@@ -1,0 +1,39 @@
+
+<html>
+	<head><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1"></head>
+	<body>
+		<p>Test Enhanced Chat Embedded Service</p>
+		<script type='text/javascript'>
+	function initEmbeddedMessaging() {
+		try {
+			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
+
+			embeddedservice_bootstrap.init(
+				'00D9p00000B66Iw',
+				'SOL_FAQ_Agent_Enhanced_Chat_V2',
+				'https://oes--agentforce.sandbox.my.site.com/ESWSOLFAQAgentEnhanced1776141322635',
+				{
+					scrt2URL: 'https://oes--agentforce.sandbox.my.salesforce-scrt.com'
+				}
+			);
+		} catch (err) {
+			console.error('Error loading Embedded Messaging: ', err);
+		}
+	};
+
+	window.addEventListener("onEmbeddedMessagingReady", () => {
+    console.log("Received the onEmbeddedMessagingReady event…");
+
+    // Send data to Salesforce
+    embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({"Student_ID" : "106255712"});
+
+    // Remove any items from the previous list that you don't want to send
+    embeddedservice_bootstrap.prechatAPI.removeHiddenPrechatFields(["Student_ID"]);
+});
+
+</script>
+<script type='text/javascript' src='https://oes--agentforce.sandbox.my.site.com/ESWSOLFAQAgentEnhanced1776141322635/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+<script onload="initEmbeddedMessaging()"></script>
+	</body>
+
+</html>
